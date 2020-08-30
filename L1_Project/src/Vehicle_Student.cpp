@@ -26,6 +26,7 @@ void Vehicle::simulate()
 {
     // Task L1.2 : Start a thread with the member function „drive“ and the object „this“ as the launch parameters. 
     // Also, add the created thread into the _thread vector of the parent class. 
+    _threads.emplace_back(std::thread(&Vehicle::drive, this));
 }
 
 // virtual function which is executed in a thread
@@ -61,12 +62,11 @@ void Vehicle::drive()
             i2 = _currDestination;
             i1 = i2->getID() == _currStreet->getInIntersection()->getID() ? _currStreet->getOutIntersection() : _currStreet->getInIntersection();
 
-            double x1, y1, x2, y2, xv, yv, dx, dy, l;
+            double x1, y1, x2, y2, xv, yv, dx, dy;
             i1->getPosition(x1, y1);
             i2->getPosition(x2, y2);
             dx = x2 - x1;
             dy = y2 - y1;
-            l = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (x1 - x2));
             xv = x1 + completion * dx; // new position based on line equation in parameter form
             yv = y1 + completion * dy;
             this->setPosition(xv, yv);

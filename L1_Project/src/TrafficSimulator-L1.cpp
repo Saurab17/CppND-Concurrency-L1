@@ -7,6 +7,20 @@
 #include "Intersection.h"
 #include "Graphics.h"
 
+
+#define INTERSECT1_X    (size_t)(1430/SCALE_DOWN_FACTOR)   
+#define INTERSECT1_Y    (size_t)(625/SCALE_DOWN_FACTOR)
+#define INTERSECT2_X    (size_t)(2575/SCALE_DOWN_FACTOR)   
+#define INTERSECT2_Y    (size_t)(1260/SCALE_DOWN_FACTOR)
+#define INTERSECT3_X    (size_t)(2200/SCALE_DOWN_FACTOR)
+#define INTERSECT3_Y    (size_t)(1950/SCALE_DOWN_FACTOR)
+#define INTERSECT4_X    (size_t)(1000/SCALE_DOWN_FACTOR) 
+#define INTERSECT4_Y    (size_t)(1350/SCALE_DOWN_FACTOR)
+#define INTERSECT5_X    (size_t)(400/SCALE_DOWN_FACTOR)
+#define INTERSECT5_Y    (size_t)(1000/SCALE_DOWN_FACTOR)
+#define INTERSECT6_X    (size_t)(750/SCALE_DOWN_FACTOR)
+#define INTERSECT6_Y    (size_t)(250/SCALE_DOWN_FACTOR)
+
 // NYC
 void createTrafficObjects(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles)
 {
@@ -21,15 +35,15 @@ void createTrafficObjects(std::vector<std::shared_ptr<Street>> &streets, std::ve
     }
 
     // position intersections in pixel coordinates
-    intersections.at(0)->setPosition(1430, 625);
-    intersections.at(1)->setPosition(2575, 1260);
-    intersections.at(2)->setPosition(2200, 1950);
-    intersections.at(3)->setPosition(1000, 1350);
-    intersections.at(4)->setPosition(400, 1000);
-    intersections.at(5)->setPosition(750, 250);
+    intersections.at(0)->setPosition(INTERSECT1_X, INTERSECT1_Y);
+    intersections.at(1)->setPosition(INTERSECT2_X, INTERSECT2_Y);
+    intersections.at(2)->setPosition(INTERSECT3_X, INTERSECT3_Y);
+    intersections.at(3)->setPosition(INTERSECT4_X, INTERSECT4_Y);
+    intersections.at(4)->setPosition(INTERSECT5_X, INTERSECT5_Y);
+    intersections.at(5)->setPosition(INTERSECT6_X, INTERSECT6_Y);
 
     // create streets and connect traffic objects
-    int nStreets = 7;
+    int nStreets = 4;
     for (size_t ns = 0; ns < nStreets; ns++)
     {
         streets.push_back(std::make_shared<Street>());
@@ -78,7 +92,7 @@ int main()
   
     // Task L1.3 : Vary the number of simulated vehicles and use the top function on the terminal or 
     // the task manager of your system to observe the number of threads used by the simulation.   
-    int nVehicles = 4;
+    int nVehicles = 7;
     createTrafficObjects(streets, intersections, vehicles, backgroundImg, nVehicles);
 
     /* PART 2 : simulate traffic objects */

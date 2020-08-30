@@ -6,6 +6,9 @@
 #include <opencv2/core.hpp>
 #include "TrafficObject.h"
 
+#define SCALE_DOWN_FACTOR   3.500000f    //Image resolution scale down factor;
+
+
 class Graphics
 {
 public:

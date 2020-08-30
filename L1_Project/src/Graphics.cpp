@@ -25,7 +25,9 @@ void Graphics::loadBackgroundImg()
     cv::namedWindow(_windowName, cv::WINDOW_NORMAL);
 
     // load image and create copy to be used for semi-transparent overlay
-    cv::Mat background = cv::imread(_bgFilename);
+    cv::Mat orig_background = cv::imread(_bgFilename);
+    cv::Mat background;
+    cv::resize(orig_background, background, cv::Size(0,0), 1/SCALE_DOWN_FACTOR, 1/SCALE_DOWN_FACTOR);
   
     _images.push_back(background);         // first element is the original background
     _images.push_back(background.clone()); // second element will be the transparent overlay
@@ -50,7 +52,7 @@ void Graphics::drawTrafficObjects()
             std::shared_ptr<Intersection> intersection = std::dynamic_pointer_cast<Intersection>(it);
 
             // intersections are green
-            cv::circle(_images.at(1), cv::Point2d(posx, posy), 25, cv::Scalar(0, 255, 0), -1);
+            cv::circle(_images.at(1), cv::Point2d(posx, posy), 25/SCALE_DOWN_FACTOR, cv::Scalar(0, 255, 0), -1);
         }
         else if (it->getType() == ObjectType::objectVehicle)
         {
@@ -59,7 +61,7 @@ void Graphics::drawTrafficObjects()
             int g = rng.uniform(0, 255);
             int r = sqrt(255*255 - g*g - r*r); // ensure that length of color vector is always 255
             cv::Scalar vehicleColor = cv::Scalar(b,g,r);
-            cv::circle(_images.at(1), cv::Point2d(posx, posy), 50, vehicleColor, -1);
+            cv::circle(_images.at(1), cv::Point2d(posx, posy), 50/SCALE_DOWN_FACTOR, vehicleColor, -1);
         }
     }
 
