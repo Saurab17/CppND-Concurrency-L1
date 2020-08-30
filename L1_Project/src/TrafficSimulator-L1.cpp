@@ -43,7 +43,7 @@ void createTrafficObjects(std::vector<std::shared_ptr<Street>> &streets, std::ve
     intersections.at(5)->setPosition(INTERSECT6_X, INTERSECT6_Y);
 
     // create streets and connect traffic objects
-    int nStreets = 4;
+    int nStreets = 7;
     for (size_t ns = 0; ns < nStreets; ns++)
     {
         streets.push_back(std::make_shared<Street>());
@@ -92,7 +92,7 @@ int main()
   
     // Task L1.3 : Vary the number of simulated vehicles and use the top function on the terminal or 
     // the task manager of your system to observe the number of threads used by the simulation.   
-    int nVehicles = 7;
+    int nVehicles = 6;
     createTrafficObjects(streets, intersections, vehicles, backgroundImg, nVehicles);
 
     /* PART 2 : simulate traffic objects */
